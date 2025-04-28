@@ -9,6 +9,10 @@ from utils import process_audio_file, get_prediction_label, get_condition_descri
 from datetime import datetime
 import pandas as pd
 
+# Configure matplotlib style
+plt.style.use('default')
+plt.rcParams['axes.prop_cycle'] = plt.cycler(color=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd'])
+
 st.set_page_config(page_title="Heart Sound Classifier", page_icon="❤️", layout="wide")
 
 def save_results(patient_name, patient_id, age, gender, date, symptoms, prediction, confidence):

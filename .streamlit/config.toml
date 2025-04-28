@@ -10,4 +10,15 @@ enableCORS = false
 enableXsrfProtection = true
 
 [browser]
-gatherUsageStats = false 
+gatherUsageStats = false
+
+[client]
+toolbarMode = "auto"
+showErrorDetails = true
+
+[runner]
+fastReruns = true
+
+[logger]
+level = "info"
+messageFormat = "%(asctime)s - %(message)s" 

@@ -10,10 +10,60 @@ from datetime import datetime
 import pandas as pd
 
 # Configure matplotlib style
-plt.style.use('default')
-plt.rcParams['axes.prop_cycle'] = plt.cycler(color=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd'])
+plt.style.use('seaborn')
+plt.rcParams.update({
+    'figure.facecolor': 'white',
+    'axes.facecolor': 'white',
+    'axes.edgecolor': '#666666',
+    'axes.grid': True,
+    'grid.color': '#dddddd',
+    'grid.linestyle': '-',
+    'grid.linewidth': 0.5,
+    'axes.spines.top': False,
+    'axes.spines.right': False,
+    'xtick.color': '#666666',
+    'ytick.color': '#666666',
+    'text.color': '#666666',
+    'axes.labelcolor': '#666666',
+    'font.family': 'sans-serif',
+    'font.sans-serif': ['Arial', 'DejaVu Sans', 'Liberation Sans', 'sans-serif'],
+    'axes.prop_cycle': plt.cycler(color=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd'])
+})
 
-st.set_page_config(page_title="Heart Sound Classifier", page_icon="❤️", layout="wide")
+st.set_page_config(
+    page_title="Heart Sound Classifier",
+    page_icon="❤️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Set Streamlit theme
+st.markdown("""
+    <style>
+        .stApp {
+            background-color: white;
+            color: #262730;
+        }
+        .stButton>button {
+            background-color: #FF4B4B;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+        }
+        .stButton>button:hover {
+            background-color: #FF3333;
+        }
+        .stTextInput>div>div>input {
+            background-color: white;
+            color: #262730;
+        }
+        .stSelectbox>div>div>select {
+            background-color: white;
+            color: #262730;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 def save_results(patient_name, patient_id, age, gender, date, symptoms, prediction, confidence):
     """Save patient results to a CSV file."""

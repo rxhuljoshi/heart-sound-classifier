@@ -37,6 +37,7 @@ data/raw/*
 !data/raw/.gitkeep
 data/models/*
 !data/models/.gitkeep
+!data/models/heart_sound_model.joblib
 data/plots/*
 !data/plots/.gitkeep
 

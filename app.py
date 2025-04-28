@@ -9,13 +9,7 @@ from utils import process_audio_file, get_prediction_label, get_condition_descri
 from datetime import datetime
 import pandas as pd
 
-# Configure matplotlib style
-plt.style.use('seaborn')
-
-# Define custom colors for the application
-CUSTOM_COLORS = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']
-
-# Set matplotlib parameters
+# Configure matplotlib with custom style
 plt.rcParams.update({
     'figure.facecolor': 'white',
     'axes.facecolor': 'white',
@@ -33,6 +27,9 @@ plt.rcParams.update({
     'font.family': 'sans-serif',
     'font.sans-serif': ['Arial', 'DejaVu Sans', 'Liberation Sans', 'sans-serif']
 })
+
+# Define custom colors for the application
+CUSTOM_COLORS = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']
 
 # Function to create a figure with light theme
 def create_figure(figsize=(10, 6)):

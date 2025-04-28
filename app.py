@@ -9,8 +9,8 @@ from utils import process_audio_file, get_prediction_label, get_condition_descri
 from datetime import datetime
 import pandas as pd
 
-# Configure matplotlib
-plt.style.use('default')
+# Configure matplotlib for dark theme
+plt.style.use('dark_background')
 
 # Define colors for plots
 CUSTOM_COLORS = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']
@@ -21,6 +21,70 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Set dark theme
+st.markdown("""
+    <style>
+        .stApp {
+            background-color: #0E1117;
+            color: #FAFAFA;
+        }
+        .stButton>button {
+            background-color: #FF4B4B;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+        }
+        .stButton>button:hover {
+            background-color: #FF3333;
+        }
+        .stTextInput>div>div>input {
+            background-color: #262730;
+            color: #FAFAFA;
+        }
+        .stSelectbox>div>div>select {
+            background-color: #262730;
+            color: #FAFAFA;
+        }
+        .stTextArea>div>div>textarea {
+            background-color: #262730;
+            color: #FAFAFA;
+        }
+        .stNumberInput>div>div>input {
+            background-color: #262730;
+            color: #FAFAFA;
+        }
+        .stDateInput>div>div>input {
+            background-color: #262730;
+            color: #FAFAFA;
+        }
+        .stExpander {
+            background-color: #262730;
+            border: 1px solid #666666;
+        }
+        .stMarkdown {
+            color: #FAFAFA;
+        }
+        .stAlert {
+            background-color: #262730;
+            border: 1px solid #666666;
+        }
+        .stProgress > div > div > div {
+            background-color: #FF4B4B;
+        }
+        .stTabs [data-baseweb="tab-list"] {
+            background-color: #262730;
+        }
+        .stTabs [data-baseweb="tab"] {
+            color: #FAFAFA;
+        }
+        .stTabs [aria-selected="true"] {
+            background-color: #FF4B4B;
+            color: white;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 def save_results(patient_name, patient_id, age, gender, date, symptoms, prediction, confidence):
     """Save patient results to a CSV file."""
@@ -65,11 +129,18 @@ def main():
         st.session_state['last_result'] = None
     
     with tab0:
-        st.title("Heart Sound Classification System")
+        # Centered heart and content
         st.markdown("""
-        An intelligent assistant for classifying heart sounds and supporting cardiac diagnosis.
-        Upload a heart sound, enter patient details, and get instant analysis.
-        """)
+        <div style='display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 60px;'>
+            <div style='font-size: 80px; margin-bottom: 10px;'>❤️</div>
+            <h1 style='margin-bottom: 0; text-align: center; color: #FAFAFA;'>Heart Sound Classification System</h1>
+            <p style='font-size: 20px; color: #FAFAFA; text-align: center; max-width: 600px;'>
+                An intelligent assistant for classifying heart sounds and supporting cardiac diagnosis.<br>
+                Upload a heart sound, enter patient details, and get instant analysis.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown("---")
     
     with tab1:
         st.header("Enter Patient Details and Upload Audio")
@@ -120,7 +191,7 @@ def main():
                     audio, sr = librosa.load(temp_path)
                     fig, ax = plt.subplots(figsize=(10, 3))
                     librosa.display.waveshow(audio, sr=sr, color=CUSTOM_COLORS[0])
-                    plt.title("Waveform")
+                    plt.title("Waveform", color='#FAFAFA')
                     plt.tight_layout()
                     st.pyplot(fig)
                     plt.close()
@@ -141,8 +212,11 @@ def main():
                         for i, bar in enumerate(bars):
                             if i == prediction:
                                 bar.set_color('#FF4B4B')
-                        plt.title("Prediction Probabilities")
-                        plt.xticks(rotation=45)
+                            else:
+                                bar.set_color('#666666')
+                        plt.title("Prediction Probabilities", color='#FAFAFA')
+                        plt.xticks(rotation=45, color='#FAFAFA')
+                        plt.yticks(color='#FAFAFA')
                         plt.tight_layout()
                         st.pyplot(fig)
                         plt.close()
@@ -173,8 +247,8 @@ def main():
                         angle = np.pi - (risk_score/100)*np.pi
                         x_needle = 0.5 + 0.42 * np.cos(angle)
                         y_needle = 0.1 + 0.75 * np.sin(angle)
-                        ax.plot([0.5, x_needle], [0.1, y_needle], color='#666666', linewidth=2)
-                        ax.scatter([0.5], [0.1], color='#666666', s=30)
+                        ax.plot([0.5, x_needle], [0.1, y_needle], color='#FAFAFA', linewidth=2)
+                        ax.scatter([0.5], [0.1], color='#FAFAFA', s=30)
                         
                         # Add score text
                         ax.text(0.5, -0.05, f'{risk_score:.1f}%', ha='center', va='center', 
@@ -185,10 +259,10 @@ def main():
                             tick_angle = np.pi - (pct/100)*np.pi
                             x_tick = 0.5 + 0.52 * np.cos(tick_angle)
                             y_tick = 0.1 + 0.88 * np.sin(tick_angle)
-                            ax.text(x_tick, y_tick, f'{pct}%', ha='center', va='center', fontsize=8)
+                            ax.text(x_tick, y_tick, f'{pct}%', ha='center', va='center', fontsize=8, color='#FAFAFA')
                         
                         ax.axis('off')
-                        plt.title("Heart Disease Risk Level", pad=20)
+                        plt.title("Heart Disease Risk Level", pad=20, color='#FAFAFA')
                         plt.tight_layout()
                         st.pyplot(fig)
                         plt.close()

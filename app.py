@@ -9,25 +9,25 @@ from utils import process_audio_file, get_prediction_label, get_condition_descri
 from datetime import datetime
 import pandas as pd
 
-# Configure matplotlib style
-plt.style.use('seaborn')
+# Configure matplotlib style for dark theme
+plt.style.use('dark_background')
 plt.rcParams.update({
-    'figure.facecolor': 'white',
-    'axes.facecolor': 'white',
+    'figure.facecolor': '#0E1117',
+    'axes.facecolor': '#0E1117',
     'axes.edgecolor': '#666666',
     'axes.grid': True,
-    'grid.color': '#dddddd',
+    'grid.color': '#262730',
     'grid.linestyle': '-',
     'grid.linewidth': 0.5,
     'axes.spines.top': False,
     'axes.spines.right': False,
-    'xtick.color': '#666666',
-    'ytick.color': '#666666',
-    'text.color': '#666666',
-    'axes.labelcolor': '#666666',
+    'xtick.color': '#FAFAFA',
+    'ytick.color': '#FAFAFA',
+    'text.color': '#FAFAFA',
+    'axes.labelcolor': '#FAFAFA',
     'font.family': 'sans-serif',
     'font.sans-serif': ['Arial', 'DejaVu Sans', 'Liberation Sans', 'sans-serif'],
-    'axes.prop_cycle': plt.cycler(color=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd'])
+    'axes.prop_cycle': plt.cycler(color=['#FF4B4B', '#FFB74D', '#81C784', '#64B5F6', '#BA68C8'])
 })
 
 st.set_page_config(
@@ -37,12 +37,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Set Streamlit theme
+# Set Streamlit dark theme
 st.markdown("""
     <style>
         .stApp {
-            background-color: white;
-            color: #262730;
+            background-color: #0E1117;
+            color: #FAFAFA;
         }
         .stButton>button {
             background-color: #FF4B4B;
@@ -55,12 +55,53 @@ st.markdown("""
             background-color: #FF3333;
         }
         .stTextInput>div>div>input {
-            background-color: white;
-            color: #262730;
+            background-color: #262730;
+            color: #FAFAFA;
+            border: 1px solid #666666;
         }
         .stSelectbox>div>div>select {
-            background-color: white;
-            color: #262730;
+            background-color: #262730;
+            color: #FAFAFA;
+            border: 1px solid #666666;
+        }
+        .stTextArea>div>div>textarea {
+            background-color: #262730;
+            color: #FAFAFA;
+            border: 1px solid #666666;
+        }
+        .stNumberInput>div>div>input {
+            background-color: #262730;
+            color: #FAFAFA;
+            border: 1px solid #666666;
+        }
+        .stDateInput>div>div>input {
+            background-color: #262730;
+            color: #FAFAFA;
+            border: 1px solid #666666;
+        }
+        .stExpander {
+            background-color: #262730;
+            border: 1px solid #666666;
+        }
+        .stMarkdown {
+            color: #FAFAFA;
+        }
+        .stAlert {
+            background-color: #262730;
+            border: 1px solid #666666;
+        }
+        .stProgress > div > div > div {
+            background-color: #FF4B4B;
+        }
+        .stTabs [data-baseweb="tab-list"] {
+            background-color: #262730;
+        }
+        .stTabs [data-baseweb="tab"] {
+            color: #FAFAFA;
+        }
+        .stTabs [aria-selected="true"] {
+            background-color: #FF4B4B;
+            color: white;
         }
     </style>
 """, unsafe_allow_html=True)
